@@ -1,0 +1,19 @@
+.mainheading {
+    color: blueviolet;
+    text-align: center;
+    text-shadow: 2px 5px 10px rgb(205, 31, 211);
+
+}
+
+body {
+    background-color: beige;
+}
+
+.texttitle {
+    background: linear-gradient(90deg, #f50808 0%, #0c0cf377 75%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+    font-size: x-large;
+
+}
