@@ -28,6 +28,9 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item">
+                        <a class="nav-link active" href="/index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link " aria-current="page" href="./addproduct.html">Add New Product</a>
                     </li>
                     <li class="nav-item">
@@ -51,45 +54,7 @@
             </div>
         </div>
     </nav>
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Product Cart</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <ul class="list-group">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <div class="ms-2 me-auto">
-                                <div class="fw-bold">Marvellous FX2</div>
-                                <h6>Price:2000</h6>
-                            </div>
-                            <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <div class="ms-2 me-auto">
-                                <div class="fw-bold">Marvellous FX2</div>
-                                <h6>Price:2000</h6>
-                            </div>
-                            <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
-                        </li>
-                    </ul>
 
-                </div>
-                <div class="d-flex flex-row justify-content-end pe-4">
-
-                    <h5>Total:<span class="ms-1">4000rs</span></h5>
-
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success">Chackout</button>
-                </div>
-            </div>
-        </div>
-    </div>
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
@@ -122,7 +87,25 @@
         </button>
     </div>
     <h3 class="text-center mt-5 fs-1 fw-semibold">Our Products</h3>
+
     <div class="container">
+        <div class="d-flex justify-content-center mt-5">
+            <input class="form-control me-2 w-25" type="search" placeholder="Search" id="searchInput"
+                aria-label="Search">
+            <button class="btn btn-primary" onclick="searchProduct()">Search</button>
+            <button class="btn btn-primary ms-3" onclick="allProducts()">All Products</button>
+            <div class="dropdown ms-3">
+                <a class="btn btn-success dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Product By Brands
+                </a>
+                <ul class="dropdown-menu" id="renderBrands" aria-labelledby="dropdownMenuLink">
+
+                </ul>
+            </div>
+
+        </div>
+
         <div class="row justify-content-center my-5" id="renderCard">
 
         </div>
