@@ -1,62 +1,62 @@
-watches=[
-    {id:1,
-    titel:"Marvellous FX2",
-    description:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Culpa, omnis?",
-    price:"2000",
-    stock:"10",
-    brand:"Titan"
-},
-{id:2,
-    titel:"boAt Stron Infinity",
-    description:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Culpa, omnis?",
-    price:"2000",
-    stock:"10",
-    brand:"boAt"
-},
-{id:3,
-    titel:"Fastrack FX2",
-    description:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Culpa, omnis?",
-    price:"2000",
-    stock:"10",
-    brand:"Fastrack"
-},
-{id:4,
-    titel:"Fastrack Smart Watch",
-    description:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Culpa, omnis?",
-    price:"2000",
-    stock:"10",
-    brand:"Fastrack"
-},
-{id:5,
-    titel:"Noise Smart Watch",
-    description:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Culpa, omnis?",
-    price:"2000",
-    stock:"10",
-    brand:"Noise"
-},
-{id:6,
-    titel:"Titan Smart Watch",
-    description:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Culpa, omnis?",
-    price:"2000",
-    stock:"10",
-    brand:"Titan"
-},
-{id:7,
-    titel:"Noise  Watch",
-    description:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Culpa, omnis?",
-    price:"2000",
-    stock:"10",
-    brand:"Noise"
-},
-{id:8,
-    titel:"boat unity Smart Watch",
-    description:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Culpa, omnis?",
-    price:"2000",
-    stock:"10",
-    brand:"boAt"
-}
+    watches=[
+        {id:1,
+        titel:"Marvellous FX2",
+        description:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Culpa, omnis?",
+        price:"3000",
+        stock:"10",
+        brand:"Titan"
+    },
+    {id:2,
+        titel:"boAt Stron Infinity",
+        description:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Culpa, omnis?",
+        price:"1000",
+        stock:"10",
+        brand:"boAt"
+    },
+    {id:3,
+        titel:"Fastrack FX2",
+        description:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Culpa, omnis?",
+        price:"500",
+        stock:"10",
+        brand:"Fastrack"
+    },
+    {id:4,
+        titel:"Fastrack Smart Watch",
+        description:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Culpa, omnis?",
+        price:"800",
+        stock:"10",
+        brand:"Fastrack"
+    },
+    {id:5,
+        titel:"Noise Smart Watch",
+        description:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Culpa, omnis?",
+        price:"2000",
+        stock:"10",
+        brand:"Noise"
+    },
+    {id:6,
+        titel:"Titan Smart Watch",
+        description:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Culpa, omnis?",
+        price:"1000",
+        stock:"10",
+        brand:"Titan"
+    },
+    {id:7,
+        titel:"Noise  Watch",
+        description:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Culpa, omnis?",
+        price:"400",
+        stock:"10",
+        brand:"Noise"
+    },
+    {id:8,
+        titel:"boat unity Smart Watch",
+        description:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Culpa, omnis?",
+        price:"2000",
+        stock:"10",
+        brand:"boAt"
+    }
 
-]
+    ]
 
 
 
@@ -89,6 +89,11 @@ localStorage.setItem('products', JSON.stringify(watches));
 }
 
 function renderProducts(prodArrray){
+
+if(!prodArrray){
+    return console.log("no product found")
+}
+
 renderCardEle= document.querySelector("#renderCard");
 
 renderCardEle.innerHTML=prodArrray.map((w,i)=>`
@@ -108,6 +113,8 @@ renderCardEle.innerHTML=prodArrray.map((w,i)=>`
 `).join("")
 }
 
+
+
 renderProducts(watches)
 
 function detailPaage(){
@@ -125,6 +132,19 @@ function searchProduct(){
     renderProducts(searchResult)
 }
 
+function filterByPrice(){
+minInput=parseInt(document.querySelector("#minInput").value)
+maxInput=parseInt(document.querySelector("#maxInput").value)
+ const filtered = watches.filter(p => p.price >= minInput && p.price <= maxInput);
+console.log(filtered)
+renderProducts(filtered)
+
+}
+function filterReste(){
+    minInput=parseInt(document.querySelector("#minInput").value="")
+maxInput=parseInt(document.querySelector("#maxInput").value="")
+ renderProducts(watches)
+}
 
 function allProducts(){
 
@@ -148,3 +168,7 @@ function productByBrandName(proBrand){
 
 const newProducts = JSON.parse(localStorage.getItem('products'))
 renderProducts(newProducts)
+
+
+
+    
