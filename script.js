@@ -68,7 +68,8 @@ function addProduct(){
     stockInput=document.querySelector("#stock").value
     brandInput=document.querySelector("#brand").value
 
-    newWatch={id:Date.now(),
+    newWatch={
+            id:Date.now(),
             titel:titelInput,
             description:desInput,
             price:priceInput,
@@ -80,7 +81,11 @@ function addProduct(){
      watches.push(newWatch)
 
 localStorage.setItem('products', JSON.stringify(watches));
- window.location.href = "./index.html";
+
+ document.querySelector("#alert").innerHTML=`<div class="alert w-50 mt-4 alert-success alert-dismissible fade show" role="alert">
+            <strong>Product</strong> Added Successsfully.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>`
 }
 
 function renderProducts(prodArrray){
