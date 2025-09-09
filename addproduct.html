@@ -16,15 +16,14 @@
 <body>
     <!-- <h1 class="mainheading">The Watch Galleray</h1> -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light top-0 sticky-top">
-        <div class="container-fluid">
-            <div>
-                <a class="navbar-brand texttitle" href="./index.html">The Watch Galleray</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div>
+        <div class="container-fluid d-flex justify-content-between ">
+
+            <a class="navbar-brand texttitle" href="./index.html">The Watch Galleray</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item">
@@ -39,17 +38,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Pricing</a>
                     </li>
-                    <!-- <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown link
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li> -->
+
                 </ul>
             </div>
         </div>
@@ -58,30 +47,30 @@
     <div class="container">
         <div class="d-flex justify-content-center align-items-center my-4" id="">
 
-            <div class="flex-column bg-light w-50 p-4">
+            <div class="flex-column bg-light w-50 p-4 shadow">
 
                 <div class="mb-3 ">
-                    <label for="formGroupExampleInput" class="form-label">Product Titel</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Product Titel">
+                    <label for="title" class="form-label">Product Titel</label>
+                    <input type="text" class="form-control" id="title" placeholder="Product Titel">
                 </div>
                 <div class="mb-3 ">
-                    <label for="formGroupExampleInput2" class="form-label">Description </label>
-                    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Description">
+                    <label for="description" class="form-label">Description </label>
+                    <input type="text" class="form-control" id="description" placeholder="Description">
                 </div>
                 <div class="mb-3 ">
-                    <label for="formGroupExampleInput2" class="form-label">Price</label>
-                    <input type="number" class="form-control" id="formGroupExampleInput2" placeholder="Price">
+                    <label for="price" class="form-label">Price</label>
+                    <input type="number" class="form-control" id="price" placeholder="Price">
                 </div>
                 <div class="mb-3 ">
-                    <label for="formGroupExampleInput2" class="form-label">Stock</label>
-                    <input type="number" class="form-control" id="formGroupExampleInput2" placeholder="Stock">
+                    <label for="stock" class="form-label">Stock</label>
+                    <input type="number" class="form-control" id="stock" placeholder="Stock">
                 </div>
                 <div class="mb-3 ">
-                    <label for="formGroupExampleInput2" class="form-label">Brand </label>
-                    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Brand">
+                    <label for="brand" class="form-label">Brand </label>
+                    <input type="text" class="form-control" id="brand" placeholder="Brand">
                 </div>
                 <div class="mt-4 text-center ">
-                    <button class="btn btn-success">Add Product</button>
+                    <button class="btn btn-success" onclick="addProduct()">Add Product</button>
                 </div>
             </div>
         </div>

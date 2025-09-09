@@ -48,7 +48,7 @@ watches=[
     stock:"10",
     brand:"Noise"
 },
-{id:7,
+{id:8,
     titel:"boat unity Smart Watch",
     description:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Culpa, omnis?",
     price:"2000",
@@ -58,15 +58,29 @@ watches=[
 
 ]
 
-inputSearchElm = document.querySelector("#searchInput")
 
- function searchProduct(){
-   
-    wordInput=inputSearchElm.value
-    searchResult = watches.filter((p)=>p.titel.toLowerCase().includes(wordInput.toLowerCase()) )
-    
-    renderProducts(searchResult)
 
+
+function addProduct(){
+    titelInput=document.querySelector("#title").value
+    desInput=document.querySelector("#description").value
+    priceInput=document.querySelector("#price").value
+    stockInput=document.querySelector("#stock").value
+    brandInput=document.querySelector("#brand").value
+
+    newWatch={id:Date.now(),
+            titel:titelInput,
+            description:desInput,
+            price:priceInput,
+            stock:stockInput,
+            brand:brandInput
+        }
+
+
+     watches.push(newWatch)
+
+localStorage.setItem('products', JSON.stringify(watches));
+ window.location.href = "./index.html";
 }
 
 function renderProducts(prodArrray){
@@ -92,14 +106,27 @@ renderCardEle.innerHTML=prodArrray.map((w,i)=>`
 renderProducts(watches)
 
 function detailPaage(){
-    window.open("./productdetails.html")
+    window.location.href="./productdetails.html"
     
 }
+
+inputSearchElm = document.querySelector("#searchInput")
+
+function searchProduct(){
+   
+    wordInput=inputSearchElm.value
+    searchResult = watches.filter((p)=>p.titel.toLowerCase().includes(wordInput.toLowerCase()) )
+    
+    renderProducts(searchResult)
+}
+
 
 function allProducts(){
 
     renderProducts(watches)
 
+    const newProducts = JSON.parse(localStorage.getItem('products'))
+    renderProducts(newProducts)
 }
 
 function renderBrands(){
@@ -114,5 +141,5 @@ function productByBrandName(proBrand){
  renderProducts(brandArray)
 }
 
-
-
+const newProducts = JSON.parse(localStorage.getItem('products'))
+renderProducts(newProducts)
