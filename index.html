@@ -18,13 +18,13 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light top-0 sticky-top">
         <div class="container-fluid d-flex justify-content-between ">
 
-            <a class="navbar-brand texttitle" href="./index.html">The Watch Galleray</a>
+            <a class="navbar-brand texttitle ms-3" href="./index.html">The Watch Galleray</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+            <div class="collapse navbar-collapse justify-content-end my-2 px-4" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link active" href="/index.html">Home</a>
@@ -38,6 +38,18 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Pricing</a>
                     </li>
+                    <li class="nav-item">
+                        <button type="button" class="btn position-relative">
+                            <i class="fa-solid fa-cart-shopping fs-6"></i>
+                            <span
+                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                0
+                                <span class="visually-hidden">unread messages</span>
+                            </span>
+                        </button>
+                    </li>
+
+
 
                 </ul>
             </div>
@@ -103,9 +115,7 @@
                         class="fa-solid fa-filter"></i></button>
                 <button class="btn btn-warning ms-1" title="Reset" onclick="filterReste()"><i
                         class="fa-solid fa-arrows-rotate"></i></button>
-
             </div>
-
         </div>
 
         <div class="container">
@@ -129,6 +139,45 @@
                 </div>
             </div>
         </footer>
+        <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit Watch </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="editIndex">
+                        <div class="mb-3">
+                            <label class="form-label">Watch Name</label>
+                            <input type="text" id="editName" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Watch Description</label>
+                            <input type="text" id="editDescription" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Watch Price</label>
+                            <input type="number" id="editPrice" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Watch Quantity</label>
+                            <input type="number" id="editStock" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="button" id="updateProduct" data-bs-dismiss="modal" class="btn btn-success">Save
+                            Changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
         <script src="./script.js"></script>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
