@@ -159,16 +159,38 @@ function addToCart(ID) {
 
     dataFromLocal = getWatchesFromLocal()
     cartProd = dataFromLocal.find((p) => p.id == ID)
+
     cartItem = {
         id: cartProd.id,
         titel: cartProd.titel,
-        price: cartProd.price
+        price: cartProd.price,
+        qty: 1
     }
     cartFromLocal = getCartProductFromLocal()
     cartFromLocal.push(cartItem)
+
     setCartProductToLocal(cartFromLocal);
     cartCount()
+    totalPrice()
+
+
+
 }
+
+function totalPrice() {
+    cart = getCartProductFromLocal()
+    total = cart.reduce((sum, item) => {
+        price = parseInt(item.price)
+        qty = item.qty
+
+        return sum = sum + price * qty
+
+    }, 0)
+
+    document.querySelector("#totalPrice").textContent = total + "rs"
+
+}
+totalPrice()
 
 function deleteFromCart(ID) {
     console.log(ID)
@@ -182,20 +204,28 @@ function deleteFromCart(ID) {
         setCartProductToLocal(dataFromLocal)
         renderCaerItem(dataFromLocal)
         cartCount()
+        totalPrice()
     }
 
 }
 
-
 function renderCaerItem() {
     cartFromLocal = getCartProductFromLocal()
-    document.querySelector("#cartItem").innerHTML = cartFromLocal.map((p, i) => `<li class="list-group-item d-flex justify-content-between align-items-center">
+    if (cartFromLocal.length < 1) {
+        document.querySelector("#cartItem").innerHTML = ` <div class="ms-2 text-center">
+                                  Cart is Empty
+                                </div>`
+    } else {
+        document.querySelector("#cartItem").innerHTML = cartFromLocal.map((p, i) => `<li class="list-group-item d-flex justify-content-between align-items-center">
                                 <div class="ms-2 me-auto">
                                     <div class="fw-bold">${p.titel}</div>
-                                    <h6>Price: ${p.price}</h6>
+                                    <div class="d-flex gap-2"><h6>Price: ${p.price}</h6>
+                                    <h6>Qty: ${p.qty}</h6>
+</div>
                                 </div>
                                 <button class="btn btn-danger" onclick="deleteFromCart('${p.id}')"><i class="fa-solid fa-trash"></i></button>
                             </li>`).join('')
+    }
 }
 
 function deleteProduct(Id) {
