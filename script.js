@@ -156,26 +156,29 @@ function cartCount() {
 cartCount()
 
 function addToCart(ID) {
-
-    dataFromLocal = getWatchesFromLocal()
-    cartProd = dataFromLocal.find((p) => p.id == ID)
-
-    cartItem = {
-        id: cartProd.id,
-        titel: cartProd.titel,
-        price: cartProd.price,
-        qty: 1
-    }
     cartFromLocal = getCartProductFromLocal()
-    cartFromLocal.push(cartItem)
+    cartProd = cartFromLocal.find((p) => p.id == ID)
+
+    if (cartProd) {
+        cartProd.qty = cartProd.qty + 1;
+    } else {
+        dataFromLocal = getWatchesFromLocal()
+        product = dataFromLocal.find((p) => p.id == ID)
+
+        cartItem = {
+            id: product.id,
+            titel: product.titel,
+            price: product.price,
+            qty: 1
+        }
+        cartFromLocal.push(cartItem)
+    }
 
     setCartProductToLocal(cartFromLocal);
     cartCount()
     totalPrice()
-
-
-
 }
+
 
 function totalPrice() {
     cart = getCartProductFromLocal()
@@ -193,7 +196,7 @@ function totalPrice() {
 totalPrice()
 
 function deleteFromCart(ID) {
-    console.log(ID)
+
     dataFromLocal = getCartProductFromLocal()
     const index = dataFromLocal.findIndex((w) => w.id == ID)
     if (index == -1) {
