@@ -39,18 +39,16 @@
                         <a class="nav-link" href="#">Pricing</a>
                     </li>
                     <li class="nav-item">
-                        <button type="button" class="btn position-relative">
+                        <button type="button" onclick="renderCaerItem()" data-bs-toggle="modal"
+                            data-bs-target="#cartModal" class="btn position-relative">
                             <i class="fa-solid fa-cart-shopping fs-6"></i>
-                            <span
+                            <span id="count"
                                 class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                0
+
                                 <span class="visually-hidden">unread messages</span>
                             </span>
                         </button>
                     </li>
-
-
-
                 </ul>
             </div>
         </div>
@@ -175,7 +173,32 @@
             </div>
         </div>
 
+        <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Product Cart</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="list-group" id="cartItem">
 
+                        </ul>
+
+                    </div>
+                    <!-- <div class="d-flex flex-row justify-content-end pe-4">
+
+                        <h5>Total:<span class="ms-1">4000rs</span></h5>
+
+                    </div> -->
+
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-success">Chackout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
         <script src="./script.js"></script>

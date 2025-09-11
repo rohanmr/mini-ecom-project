@@ -135,7 +135,68 @@ function updateProduct(i) {
 
 }
 
-function addToCart(i) { }
+function setCartProductToLocal(data) {
+    localStorage.setItem("cart", JSON.stringify(data));
+}
+
+function getCartProductFromLocal() {
+    return JSON.parse(localStorage.getItem("cart"));
+}
+
+cartArray = []
+
+function cartCount() {
+    cartFromLocal = getCartProductFromLocal()
+    if (!cartFromLocal) {
+        document.querySelector("#count").textContent = "0"
+    } else {
+        document.querySelector("#count").textContent = cartFromLocal.length
+    }
+}
+cartCount()
+
+function addToCart(ID) {
+
+    dataFromLocal = getWatchesFromLocal()
+    cartProd = dataFromLocal.find((p) => p.id == ID)
+    cartItem = {
+        id: cartProd.id,
+        titel: cartProd.titel,
+        price: cartProd.price
+    }
+    cartFromLocal = getCartProductFromLocal()
+    cartFromLocal.push(cartItem)
+    setCartProductToLocal(cartFromLocal);
+    cartCount()
+}
+
+function deleteFromCart(ID) {
+    console.log(ID)
+    dataFromLocal = getCartProductFromLocal()
+    const index = dataFromLocal.findIndex((w) => w.id == ID)
+    if (index == -1) {
+        alert("no product found")
+    } else {
+
+        dataFromLocal.splice(index, 1)
+        setCartProductToLocal(dataFromLocal)
+        renderCaerItem(dataFromLocal)
+        cartCount()
+    }
+
+}
+
+
+function renderCaerItem() {
+    cartFromLocal = getCartProductFromLocal()
+    document.querySelector("#cartItem").innerHTML = cartFromLocal.map((p, i) => `<li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="ms-2 me-auto">
+                                    <div class="fw-bold">${p.titel}</div>
+                                    <h6>Price: ${p.price}</h6>
+                                </div>
+                                <button class="btn btn-danger" onclick="deleteFromCart('${p.id}')"><i class="fa-solid fa-trash"></i></button>
+                            </li>`).join('')
+}
 
 function deleteProduct(Id) {
 
@@ -172,7 +233,7 @@ function renderProducts(prodArrray) {
         <p class="card-text m-1">Price: ${w.price}</p>
        <div class="justify-content-start gap-2 d-flex mt-3"> <button onclick="updateProduct('${i}')" data-bs-toggle="modal"
         data-bs-target="#editProductModal"  class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button>
-       <button onclick="addToCart('${i}')" class="btn btn-success"><i class="fa-solid fa-cart-plus ms-1 "></i></button>
+       <button onclick="addToCart('${w.id}')" class="btn btn-success"><i class="fa-solid fa-cart-plus ms-1 "></i></button>
        <button onclick="deleteProduct('${w.id}')"  class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
        
        </div>
@@ -194,6 +255,14 @@ window.addEventListener("DOMContentLoaded", () => {
         renderProducts(dataFromLocal);
         renderBrands();
     }
+});
+
+window.addEventListener("DOMContentLoaded", () => {
+    cartFromLocal = getCartProductFromLocal();
+    if (!cartFromLocal) {
+        setCartProductToLocal(cartArray);
+    }
+
 });
 
 inputSearchElm = document.querySelector("#searchInput");
