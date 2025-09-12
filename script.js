@@ -85,24 +85,6 @@ function getWatchesFromLocal() {
     return JSON.parse(localStorage.getItem("products"));
 }
 
-window.addEventListener("DOMContentLoaded", () => {
-    dataFromLocal = getWatchesFromLocal();
-    if (!dataFromLocal) {
-        setWatchestoLocal(watches);
-    }
-    if (renderCardEle) {
-        renderProducts(dataFromLocal);
-        renderBrands();
-    }
-});
-
-window.addEventListener("DOMContentLoaded", () => {
-    cartFromLocal = getCartProductFromLocal();
-    if (!cartFromLocal) {
-        setCartProductToLocal(cartArray);
-    }
-
-});
 
 
 function addProduct() {
@@ -206,17 +188,13 @@ function addToCart(ID) {
 
 function totalPrice() {
     cart = getCartProductFromLocal()
-    if (!cart) {
-        return console.log("no product found")
-    } else {
-        total = cart.reduce((sum, item) => {
-            price = parseInt(item.price)
-            qty = item.qty
+    total = cart.reduce((sum, item) => {
+        price = parseInt(item.price)
+        qty = item.qty
 
-            return sum = sum + price * qty
+        return sum = sum + price * qty
 
-        }, 0)
-    }
+    }, 0)
 
     document.querySelector("#totalPrice").textContent = total + "rs"
 
