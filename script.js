@@ -73,6 +73,10 @@ watches = [
     },
 ];
 
+
+
+
+
 function setWatchestoLocal(data) {
     localStorage.setItem("products", JSON.stringify(data));
 }
@@ -80,6 +84,26 @@ function setWatchestoLocal(data) {
 function getWatchesFromLocal() {
     return JSON.parse(localStorage.getItem("products"));
 }
+
+window.addEventListener("DOMContentLoaded", () => {
+    dataFromLocal = getWatchesFromLocal();
+    if (!dataFromLocal) {
+        setWatchestoLocal(watches);
+    }
+    if (renderCardEle) {
+        renderProducts(dataFromLocal);
+        renderBrands();
+    }
+});
+
+window.addEventListener("DOMContentLoaded", () => {
+    cartFromLocal = getCartProductFromLocal();
+    if (!cartFromLocal) {
+        setCartProductToLocal(cartArray);
+    }
+
+});
+
 
 function addProduct() {
     titelInput = document.querySelector("#title").value;
@@ -182,13 +206,17 @@ function addToCart(ID) {
 
 function totalPrice() {
     cart = getCartProductFromLocal()
-    total = cart.reduce((sum, item) => {
-        price = parseInt(item.price)
-        qty = item.qty
+    if (!cart) {
+        return console.log("no product found")
+    } else {
+        total = cart.reduce((sum, item) => {
+            price = parseInt(item.price)
+            qty = item.qty
 
-        return sum = sum + price * qty
+            return sum = sum + price * qty
 
-    }, 0)
+        }, 0)
+    }
 
     document.querySelector("#totalPrice").textContent = total + "rs"
 
@@ -279,24 +307,7 @@ function renderProducts(prodArrray) {
 }
 renderProducts(watches);
 
-window.addEventListener("DOMContentLoaded", () => {
-    dataFromLocal = getWatchesFromLocal();
-    if (!dataFromLocal) {
-        setWatchestoLocal(watches);
-    }
-    if (renderCardEle) {
-        renderProducts(dataFromLocal);
-        renderBrands();
-    }
-});
 
-window.addEventListener("DOMContentLoaded", () => {
-    cartFromLocal = getCartProductFromLocal();
-    if (!cartFromLocal) {
-        setCartProductToLocal(cartArray);
-    }
-
-});
 
 inputSearchElm = document.querySelector("#searchInput");
 
