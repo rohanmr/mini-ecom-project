@@ -73,10 +73,6 @@ watches = [
     },
 ];
 
-
-
-
-
 function setWatchestoLocal(data) {
     localStorage.setItem("products", JSON.stringify(data));
 }
@@ -84,8 +80,6 @@ function setWatchestoLocal(data) {
 function getWatchesFromLocal() {
     return JSON.parse(localStorage.getItem("products"));
 }
-
-
 
 function addProduct() {
     titelInput = document.querySelector("#title").value;
@@ -222,7 +216,7 @@ function renderCaerItem() {
     cartFromLocal = getCartProductFromLocal()
     if (cartFromLocal.length < 1) {
         document.querySelector("#cartItem").innerHTML = ` <div class="ms-2 text-center">
-                                  Cart is Empty
+                                  Cart is Empty please add Product from Home Page.  
                                 </div>`
     } else {
         document.querySelector("#cartItem").innerHTML = cartFromLocal.map((p, i) => `<li class="list-group-item d-flex justify-content-between align-items-center">
@@ -321,7 +315,8 @@ function allProducts() {
 }
 
 function renderBrands() {
-    brands = new Set(watches.map((p) => p.brand));
+    brandFromLocal = getWatchesFromLocal()
+    brands = new Set(brandFromLocal.map((p) => p.brand));
     proBrand = Array.from(brands);
     document.querySelector("#renderBrands").innerHTML = proBrand
         .map(
@@ -333,6 +328,8 @@ function renderBrands() {
 renderBrands();
 
 function productByBrandName(proBrand) {
-    brandArray = watches.filter((p) => p.brand == proBrand);
+    brandFromLocal = getWatchesFromLocal()
+
+    brandArray = brandFromLocal.filter((p) => p.brand == proBrand);
     renderProducts(brandArray);
 }
